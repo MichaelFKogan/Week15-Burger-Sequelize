@@ -1,0 +1,66 @@
+<div class="container">
+<div class="jumbotron" style="margin-top: 20px;">
+<div class="row">
+<h1 class="text-center" style="margin-bottom: 40px; margin-top:0px;">Burgers</h1></div>
+
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="font-size: 16px; font-weight: bold;">
+
+<h3 style="margin-top:0px;">New Burgers</h3>
+{{!-- SELECT ALL --}}
+{{#each placeholder }}
+  {{this.id}}. {{this.burgerName}}
+
+    {{!-- UPDATE BURGER TO DEVOURED = TRUE --}}
+  <form action="/update?_method=PUT" method="POST">
+          <input type="hidden" name="boolean" value="1">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <button type="submit" class="btn btn-primary">Devour It!</button>
+        </form>
+<br>
+{{/each}}
+
+	</div>
+
+	{{!-- Need Second Column for DEVOURED Section --}}
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 " style="font-size: 16px; font-weight: bold;">
+<h3 style="margin-top:0px;">Devoured</h3>
+{{!-- DISPLAY DEVOURED --}}
+{{!-- <div style="background:white; border:1px solid black; margin: 20px;"> --}}
+
+{{#each placeholderTwo }}
+  {{this.id}}. {{this.burgerName}}
+
+  {{!-- DELETE A BURGER --}}
+  <form action="/delete?_method=DELETE" method="POST">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+<br>
+{{/each}}
+
+</div>
+</div>
+
+{{!-- POST BURGER TO PAGE --}}
+<div class="row text-center">
+  <form action="/create" method="POST" style="margin:40px;">
+  	
+    <input style="width:400px;" type="text" name="burgerInput" style="margin-right:0px;"></input>
+	<input type="hidden" name="boolean" value="0">
+  	<button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
